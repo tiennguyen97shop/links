@@ -9,18 +9,19 @@
     input, button {
       width:100%; padding:12px; margin:8px 0; border-radius:8px; border:none;
     }
+    
     button { background:#ffd54f; font-weight:bold }
   </style>
 </head>
 <body>
   <h2>Nhập link sản phẩm</h2>
-
   <input id="key" placeholder="Mã link (vd: cam01)" />
   <input id="url" placeholder="Link sản phẩm TikTok" />
   <button onclick="save()">LƯU LINK</button>
-
   <p id="msg"></p>
-
+  <h2>Danh sách link rút gọn</h2>
+  <div id="list">Đang tải...</div>
+  
   <script>
     function save() {
       const key = document.getElementById('key').value;
@@ -35,5 +36,21 @@
       .then(t => document.getElementById('msg').innerText = 'Đã lưu: ' + t);
     }
   </script>
+  
+  <script>
+    fetch('https://script.google.com/macros/s/XXXX/exec?action=all')
+      .then(res => res.json())
+      .then(data => {
+        const box = document.getElementById('list');
+        box.innerHTML = '';
+        data.forEach(item => {
+          const a = document.createElement('a');
+          a.href = 'go.html?to=' + item.key;
+          a.innerText = item.key;
+          box.appendChild(a);
+        });
+      });
+  </script>
+  
 </body>
 </html>

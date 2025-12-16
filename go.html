@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Đi đến link</title>
+  <script>
+    const key = new URLSearchParams(window.location.search).get('to');
+    fetch('https://script.google.com/macros/s/AKfycbzZnWGp96_Rt16wO0a-ibVgOFRDuF1Y06KjrTQjn5tVxHqzyVKGS1HLqr8VHzQaA6erbQ/exec?key=' + key)
+      .then(res => res.text())
+      .then(url => {
+        if(url) window.location.href = url;
+        else document.body.innerHTML = '<h3>Link không tồn tại</h3>';
+      });
+  </script>
+</head>
+<body></body>
+</html>
